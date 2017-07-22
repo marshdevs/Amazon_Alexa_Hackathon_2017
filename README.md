@@ -26,6 +26,8 @@ Once you know what you’re eating, and you know what ingredients you need, you 
 what you need to buy. Ramsay is open to further integration, so he can be improved to link with your Amazon Fresh / 
 PrimeNow accounts, to finish the job and fill your pantry with ease.
 
-Uploaded internally to broadcast.amazon.com
-Uploaded externally at 
+Uploaded internally to https://broadcast.amazon.com
+
+Uploaded externally at https://youtu.be/7UPOvjDLMlI
+
 Team: "Huck Cube", JFK14; Marshall Briggs, Daniel Berestov, Jidnyasa Patil
