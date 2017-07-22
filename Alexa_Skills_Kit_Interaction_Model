@@ -1,0 +1,265 @@
+{
+  "intents": [
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": []
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": []
+    },
+    {
+      "name": "GetQuote",
+      "samples": [
+        "Give me a gordon ramsay quote",
+        "What would gordon say",
+        "What would ramsay say",
+        "Tell me something gordon ramsay would say"
+      ],
+      "slots": []
+    },
+    {
+      "name": "LoadIngredients",
+      "samples": [
+        "What do i need to cook on {ingredientsDay}",
+        "What ingredients do I need for {ingredientsDay}",
+        "what do i need to have for {ingredientsDay}"
+      ],
+      "slots": [
+        {
+          "name": "ingredientsDay",
+          "type": "AMAZON.DayOfWeek",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "LoadWeek",
+      "samples": [
+        "what am i eating on {Weekorday}",
+        "whats for dinner on {Weekorday}",
+        "what am I eating this {Weekorday}",
+        "whats for dinner this {Weekorday}"
+      ],
+      "slots": [
+        {
+          "name": "Weekorday",
+          "type": "WeekorDay",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "MealNotValidated",
+      "samples": [
+        "I don't like that meal",
+        "No I don't like that",
+        "No",
+        "I don't want that",
+        "Please change that meal"
+      ],
+      "slots": []
+    },
+    {
+      "name": "MealValidated",
+      "samples": [
+        "I like that",
+        "Yes",
+        "That sounds great",
+        "Good choice",
+        "Yes that's good",
+        "That's good",
+        "Ok",
+        "Very good",
+        "Yeah that sounds good",
+        "Sure that's good",
+        "I like that idea",
+        "Yeah",
+        "Sure"
+      ],
+      "slots": []
+    },
+    {
+      "name": "SetFoodPreference",
+      "samples": [
+        "I like to eat {foodPreference}",
+        "My favorite food is {foodPreference}",
+        "{foodPreference} is great",
+        "I really like {foodPreference}",
+        "I like {foodPreference}"
+      ],
+      "slots": [
+        {
+          "name": "foodPreference",
+          "type": "AMAZON.Food",
+          "samples": [
+            "I like to eat {foodPreference}",
+            "My favorite food is {foodPreference}",
+            "I like {foodPreference}",
+            "{foodPreference} is delicious",
+            "I love {foodPreference}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SuggestMeals",
+      "samples": [
+        "Tell me what to cook this week",
+        "Let's plan some meals for this wee",
+        "I want to cook this week",
+        "What should I cook this week",
+        "What should I make",
+        "I dont know what to cook"
+      ],
+      "slots": []
+    }
+  ],
+  "types": [
+    {
+      "name": "WeekorDay",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "Monday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Week",
+            "synonyms": []
+          }
+        },
+        {
+          "id": "",
+          "name": {
+            "value": "Tuesday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Wednesday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Thursday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Friday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Saturday",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "Sunday",
+            "synonyms": []
+          }
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Confirm.Intent-MealNotValidated",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Would you like to replace that meal?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-SetFoodPreference.IntentSlot-foodPreference",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What kinds of foods do you like to eat?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What do you like to eat?"
+        },
+        {
+          "type": "PlainText",
+          "value": "What are your favorite foods?"
+        }
+      ]
+    },
+    {
+      "id": "Confirm.Intent-SuggestMeals",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Should we plan your meals for this week?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "MealNotValidated",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-MealNotValidated"
+        },
+        "slots": []
+      },
+      {
+        "name": "SetFoodPreference",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "foodPreference",
+            "type": "AMAZON.Food",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-SetFoodPreference.IntentSlot-foodPreference"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SuggestMeals",
+        "confirmationRequired": true,
+        "prompts": {
+          "confirm": "Confirm.Intent-SuggestMeals"
+        },
+        "slots": []
+      }
+    ]
+  }
+}
